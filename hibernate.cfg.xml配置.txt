@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+<session-factory>
+
+
+	<!-- 1.连接数据库字符串 -->
+	<property name="connection.url">
+		jdbc:oracle:thin:@localhost:1521:orcl
+	</property>
+
+	<!-- 2.用户名 -->
+	<property name="connection.username">system</property>
+
+	<!-- 3.口令 -->
+	<property name="connection.password">orcl</property>
+
+	<!-- 4.驱动 -->
+	<property name="connection.driver_class">
+		oracle.jdbc.driver.OracleDriver
+	</property>
+
+	<!-- 5.方言 -->
+	<property name="dialect">
+		org.hibernate.dialect.Oracle10gDialect
+	</property>
+
+	<!-- 6.是否显示sql语句 -->
+	<property name="show_sql">true</property>
+
+	<!-- 7.是否格式化sql语句 -->
+	<property name="format_sql">true</property>
+
+	<!-- 8.当前线程对象 
+		session对象===sqlSession.Factory.currentSession();
+		当调用该方法时，hibernate会将session绑定到当前线程
+		事务结束后，hibernate会将session从当前线程释放，并且关闭session
+	-->
+	<property name="current_session_context_class">thread</property>
+
+	<!-- 9.关闭自动查找包，spring会管理hibernate的工厂对象，和session对象 -->
+	<property name="javax.persistence.validation.mode">none</property>
+	<!-- 10.引入持久化映射文件 -->
+	<mapping resource="cn/bdqn/entity/Dept.hbm.xml" />
+</session-factory>
+</hibernate-configuration>
